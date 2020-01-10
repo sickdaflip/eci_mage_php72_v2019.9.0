@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Sysgrade_Eci>
+            <version>20.19.9.0</version>
+        </Sysgrade_Eci>
+    </modules>
+    <global>
+        <helpers>
+            <sysgrade_eci>
+                <!-- Helper definition needed by Magento -->
+                <class>Sysgrade_Eci_Helper</class>
+            </sysgrade_eci>
+        </helpers>
+        
+        <blocks>
+            <sysgrade_eci>
+                <!-- Set a block definition and lookup directory -->
+                <class>Sysgrade_Eci_Block</class>
+            </sysgrade_eci>
+        </blocks>
+        
+        <models>
+            <sysgrade_eci>
+                <!-- This is where we define our model directory -->
+                <class>Sysgrade_Eci_Model</class>
+                <!-- Define a resource to create a custom table -->
+                <resourceModel>sysgrade_eci_mysql4</resourceModel>
+            </sysgrade_eci>
+             
+            <!-- Here's our resource model we'll use to create a database table -->
+            <sysgrade_eci_mysql4>
+                <class>Sysgrade_Eci_Model_Mysql4</class>
+                <entities>
+                    <!-- Let's define our table, we'll call it with the attributeexclusion name, but the real table is sysgrade_eci_attributeexclusion -->
+                    <!-- After we define our entity, we can call it with our model by calling foo_bar/attributeexclusion -->
+                    <attributeexclusion>
+                        <table>sysgrade_eci_attributeexclusion</table>
+                    </attributeexclusion>
+                    <paymentalias>
+                        <table>sysgrade_eci_paymentalias</table>
+                    </paymentalias>
+                </entities>
+            </sysgrade_eci_mysql4>
+			
+            <eci>
+                <class>Sysgrade_Eci_Model</class>
+            </eci>
+        </models>
+         
+        <!-- And finally we define our resource setup script -->
+        <resources>
+            <sysgrade_eci_setup>
+                <setup>
+                    <module>Sysgrade_Eci</module>
+                </setup>
+            </sysgrade_eci_setup>
+        </resources>
+        
+        
+    </global>
+    
+    <!-- Define default values for settings tab eci in mage configuration module: navigate to system -> configuration -> eci -->
+    <default>
+        <eci>
+            <general>
+                <testmode>0</testmode>
+                <fatal_error_notification_email></fatal_error_notification_email>
+                <clean_log_after_days>30</clean_log_after_days>
+                <loggingthreshold>2</loggingthreshold>
+                <license_key></license_key>
+                <local_key></local_key>
+            </general>
+            <article>
+                <assign_article_to_category>1</assign_article_to_category>
+                <assign_image_to_article>1</assign_image_to_article>
+                <create_sku_for_assigned_products>0</create_sku_for_assigned_products>
+                <is_in_stock>3</is_in_stock>
+                <export_bundle_behaviour>0</export_bundle_behaviour>
+            </article>
+            <category>
+                <category_anchor>1</category_anchor>
+                <category_include_in_menu>1</category_include_in_menu>
+                <assign_image_to_category>1</assign_image_to_category>
+            </category>
+            <price>
+                <tax_rate_zero>0</tax_rate_zero>
+                <tax_rate_reduced>2</tax_rate_reduced>
+                <tax_rate_full>1</tax_rate_full>
+                <!--<shipping_tax_on_product_tax>0</shipping_tax_on_product_tax>-->
+                <use_store_config>0</use_store_config>
+                <use_net_value></use_net_value>
+            </price>
+            <payment>
+                <paypal_ipn>1</paypal_ipn>
+                <paypalplus_invoice>1</paypalplus_invoice>
+                <billsafe_contract>Bezahlt mit BillSAFE. Die Forderung ist im Rahmen eines laufenden Factoringvertrages an die BillSAFE GmbH abgetreten. Die Zahlungen müssen deshalb direkt an die BillSAFE GmbH geleistet werden.</billsafe_contract>
+                <payment_status>1</payment_status>
+            </payment>
+            <process>
+                <max_run_time>240</max_run_time>
+                <memory_limit>256</memory_limit>
+                <use_global_memory_limit>1</use_global_memory_limit>
+                <current_cycle></current_cycle>
+                <current_file></current_file>
+                <full_lock>0</full_lock>
+                <article_lock>0</article_lock>
+                <order_lock>0</order_lock>
+                <last_sent_order_id></last_sent_order_id>
+                <ignore_store_mapping_on_order_export>0</ignore_store_mapping_on_order_export>
+                <move_file_on_error>1</move_file_on_error>
+                <reindex_after_transfer>1</reindex_after_transfer>
+                <export_all_orders>0</export_all_orders>
+                <export_orders_in_shop_currency>1</export_orders_in_shop_currency>
+            </process>
+            <rest_api>
+                <username>sysgrade_eci</username>
+            </rest_api>
+        </eci>
+    </default>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <!-- This is how we load our Adminhtml controllers -->
+                    <modules>
+                        <Sysgrade_Eci before="Mage_Adminhtml">Sysgrade_Eci_Adminhtml</Sysgrade_Eci>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <sysgrade_eci>
+                    <!--
+                    We again keep a nice naming convention and make our module upgrade proof by placing it in a separate folder
+                    - Since we are in the adminhtml node, this will look for the XML file in the app/design/adminhtml/default/default root folder
+                    -->
+                    <file>sysgrade/eci.xml</file>
+                </sysgrade_eci>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Sysgrade_Eci>
+                    <files>
+                        <default>Sysgrade_Eci.csv</default>
+                    </files>
+                </Sysgrade_Eci>
+            </modules>
+        </translate>
+        <events>
+            <adminhtml_widget_container_html_before>
+                <observers>
+                    <sysgrade_eci_add_unexport_button>
+                        <class>sysgrade_eci/observer</class>
+                        <type>singleton</type>
+                        <method>adminhtmlWidgetContainerHtmlBefore</method>
+                    </sysgrade_eci_add_unexport_button>
+                </observers>
+            </adminhtml_widget_container_html_before>
+        </events>
+    </adminhtml>
+    
+    <crontab>
+        <jobs>
+            <sysgrade_eci_ordercron>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sysgrade_eci/observer::ordercron</model>
+                </run>
+            </sysgrade_eci_ordercron>
+            <sysgrade_eci_articlecron>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sysgrade_eci/observer::articlecron</model>
+                </run>
+            </sysgrade_eci_articlecron>
+            <sysgrade_eci_cleanlogscron>
+                <schedule>
+                    <cron_expr>0 3 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sysgrade_eci/observer::cleanlogscron</model>
+                </run>
+            </sysgrade_eci_cleanlogscron>
+        </jobs>
+    </crontab>
+</config>

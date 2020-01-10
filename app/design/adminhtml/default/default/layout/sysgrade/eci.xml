@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout>
+    <!-- Here, we reference the XML node path of our route -->
+    <adminhtml_attributeexclusion_index>
+        <reference name="content">
+            <!-- We also reference our block by namespacename_modulename/adminhtml_controllername, and name it uniquely -->
+            <block type="sysgrade_eci/adminhtml_attributeexclusion" name="sysgrade_eci_attributeexclusion" />
+        </reference>
+    </adminhtml_attributeexclusion_index>
+    <adminhtml_paymentalias_index>
+        <reference name="content">
+            <!-- We also reference our block by namespacename_modulename/adminhtml_controllername, and name it uniquely -->
+            <block type="sysgrade_eci/adminhtml_paymentalias" name="sysgrade_eci_paymentalias" />
+        </reference>
+    </adminhtml_paymentalias_index>
+    <adminhtml_orderlist_index>
+        <reference name="content">
+            <!-- We also reference our block by namespacename_modulename/adminhtml_controllername, and name it uniquely -->
+            <block type="sysgrade_eci/adminhtml_orderlist" name="sysgrade_eci_orderlist" />
+        </reference>
+    </adminhtml_orderlist_index>
+</layout>

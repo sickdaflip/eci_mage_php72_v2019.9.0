@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Sysgrade_Eci>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Sysgrade_Eci>
+    </modules>
+</config>

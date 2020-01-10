@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <eci translate="label">
+            <label>eCommerce Integrator</label>
+            <sort_order>150</sort_order>
+        </eci>
+    </tabs> 
+    <sections>
+        <eci translate="label" module="adminhtml">
+            <label>Settings</label>
+            <tab>eci</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general translate="label comment">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <!--<comment><![CDATA[This is a <strong>global comment</strong> about my <em>configuration</em>.<br />You can specify <u>custom html</u> tags. <a href="http://www.bubblecode.net/en" target="_blank">Click here for example!</a>]]></comment>-->
+                    <fields>
+                        <testmode translate="label comment">
+                            <label>Test Mode</label>
+                            <comment>Enable to use test mode. Import files won't be deleted.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </testmode>
+                        <clean_log_after_days translate="label comment">
+                            <label>Clean Log</label>
+                            <comment>Deletes logs older than the given number of days. 0 = cleaning disabled</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </clean_log_after_days>
+                        <loggingthreshold translate="label comment">
+                            <label>Loggingthreshold</label>
+                            <comment>Save only logs with log level at least or higher than the given value.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_loggingthreshold_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </loggingthreshold>
+                        <fatal_error_notification_email translate="label comment">
+                            <label>Admin Email</label>
+                            <comment>Use this email address for error reporting.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </fatal_error_notification_email>
+                        <license_key translate="label comment">
+                            <label>License Key</label>
+                            <comment>Please fill these field with your license key.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </license_key>
+                        <local_key>
+                            <frontend_type>hidden</frontend_type>
+                        </local_key>
+                    </fields>
+                </general>
+                <article>
+                    <label>Product</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <default_attribute_set translate="label comment">
+                            <label>Default Attribute Set</label>
+                            <comment>Used attribute set if not set in product.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_attributeset_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_attribute_set>
+                        <default_customer_group translate="label comment">
+                            <label>Default Customer Group</label>
+                            <comment>All prices for this customer group will be imported as default prices</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_customergroup_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_customer_group>
+                        <assign_article_to_category translate="label comment">
+                            <label>Assign to Category</label>
+                            <comment>If set to "yes", the product will be assigned to the given categories.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </assign_article_to_category>
+                        <assign_image_to_article translate="label comment">
+                            <label>Assign Images</label>
+                            <comment>If set to "yes", the received images will be assigned to products.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </assign_image_to_article>
+                        <is_in_stock translate="label comment">
+                            <label>Stock Handling</label>
+                            <comment>Defines the stock handling mechanism.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_stock_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </is_in_stock>
+                        <export_bundle_behaviour translate="label comment">
+                            <label>Order Export: Bundles</label>
+                            <comment>Defines how bundle and grouped products are exported</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_exportbundlebehaviour_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </export_bundle_behaviour>
+                    </fields>
+                </article>
+                <category>
+                    <label>Category</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <category_anchor translate="label comment">
+                            <label>Is Anchor</label>
+                            <comment>Set category as anchor?</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </category_anchor>
+                        <category_include_in_menu translate="label comment">
+                            <label>Include in Navigation Menu</label>
+                            <comment>Include in Navigation Menu by default?</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </category_include_in_menu>
+                        <assign_image_to_category translate="label comment">
+                            <label>Assign Images</label>
+                            <comment>If set to "yes", the received images will be assigned to categories.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </assign_image_to_category>
+                    </fields>
+                </category>
+                <price>
+                    <label>Price</label>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <tax_rate_zero translate="label comment">
+                            <label>Tax Rate Zero</label>
+                            <comment>Used tax rate for tax free products.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_tax_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </tax_rate_zero>
+                        <tax_rate_reduced translate="label comment">
+                            <label>Reduced Tax Rate</label>
+                            <comment>Used tax rate for products with reduced tax rate.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_tax_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </tax_rate_reduced>
+                        <tax_rate_full translate="label comment">
+                            <label>Regular Tax Rate</label>
+                            <comment>Used tax rate for fully taxed products.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_tax_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </tax_rate_full>
+                        <!--<shipping_tax_on_product_tax translate="label comment">
+                            <label>Tax Rate Shipping</label>
+                            <comment>Use tax calculation rule for shipping tax based on product tax?</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_shippingtax_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shipping_tax_on_product_tax>-->
+                        <use_store_config translate="label comment">
+                            <label>Store-specific price handling</label>
+                            <comment>Only activate when instructed by Sysgrade support! When set, prices are imported with/without tax, depending on the individual store configuration. When not active, the setting of 'Import product prices including tax' is used.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_store_config>
+                        <use_net_value translate="label comment">
+                            <label>Import product prices including tax</label>
+                            <comment>When activated, all product prices are imported as gross prices, e.g. including tax.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>sysgrade_eci/system_config_source_netgross_values</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_net_value>
+                    </fields>
+                </price>
+                <payment>
+                    <label>Payment</label>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <paypal_ipn translate="label comment">
+                            <label>Wait for Paypal Response</label>
+                            <comment>Enable this if you are having issues with paypal orders getting exported twice.</comment>
+                            <frontend_type>select</frontend_type>
+                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </paypal_ipn>
+                        <paypalplus_invoice translate="label comment">
+                            <label>Transfer PayPal Plus Invoice Data</label>
+                            <comment>Enable this if you are want to transfer PayPal Plus invoicing data like bank account, IBAN etc.</comment>
+                            <frontend_type>select</frontend_type>
+                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </paypalplus_invoice>
+                        <billsafe_contract translate="label comment">
+                            <label>BillSAFE Invoice Pattern</label>
+                            <comment>Defines the text pattern used for BillSAFE invoices.</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </billsafe_contract>
+                        <payment_status translate="label comment">
+                            <label>Payment Status</label>
+                            <comment>Export payment status to the ERM System.</comment>
+                            <frontend_type>select</frontend_type>
+                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_status>
+                    </fields>
+                </payment>
+                <process translate="label comment">
+                    <label>Process</label>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <max_run_time translate="label comment">
+                            <label>Runtime limit (seconds)</label>
+                            <comment>Defines the maximun run time in seconds for import processing.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </max_run_time>
+                        <memory_limit translate="label comment">
+                            <label>Memory Limit (MB)</label>
+                            <comment>Defines the maximum memory amount than can be used by the import process.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </memory_limit>
+                        <use_global_memory_limit translate="label comment">
+                            <label>Global Memory Limit</label>
+                            <comment>Use the global memory limit defined in your php.ini. Overrides setting above.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_global_memory_limit>
+                        <current_cycle translate="label comment">
+                            <label>Current Cycle</label>
+                            <comment>Defines the current cycle within the import process.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </current_cycle>
+                        <current_file translate="label comment">
+                            <label>Current File</label>
+                            <comment>Defines the current file within the import process.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </current_file>
+                        <full_lock translate="label comment">
+                            <label>Full Processing Lock</label>
+                            <comment>Shows if full lock is active. Change to "no" unlock.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </full_lock>
+                        <article_lock translate="label comment">
+                            <label>Product Processing Lock</label>
+                            <comment>Shows if product processing is locked. Change to "no" unlock.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </article_lock>
+                        <order_lock translate="label comment">
+                            <label>Order Processing Lock</label>
+                            <comment>Shows if order processing is locked. Change to "no" unlock.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_lock>
+                        <move_file_on_error translate="label comment">
+                            <label>Move file on error</label>
+                            <comment>Moves the input XML file to the folder 'not_processed' if an error occured.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </move_file_on_error>
+                        <reindex_after_transfer translate="label comment">
+                            <label>Reindex after transferend</label>
+                            <comment>Should the Magento Index be refreshed after the transfer is complete?</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <source_model>sysgrade_eci/system_config_source_reindex_values</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </reindex_after_transfer>
+                        <export_all_orders>
+                            <label>Export all Orders</label>
+                            <comment>If set to "no" the Modul will export only mapped stores.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </export_all_orders>
+                        <export_orders_in_shop_currency>
+                            <label>Export orders in shop currency</label>
+                            <comment>If set to "yes", the interface will export orders in the global currency instead of the currency the order was placed in.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>105</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </export_orders_in_shop_currency>
+                    </fields>
+                </process>
+                <rest_api translate="label comment">
+                    <label>REST API</label>
+                    <sort_order>900</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <username translate="label comment">
+                            <label>Username</label>
+                            <comment>Your username for the REST API.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </username>
+                       <password translate="label comment">
+                            <label>API KEY</label>
+                            <comment>Your API KEY for the REST API.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </password>
+                    </fields>
+                </rest_api>
+                
+                <version translate="label comment">
+                    <label>Version</label>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <current_version translate="label comment">
+                            <label>Current Version</label>
+                            <comment>Your current version of the eCommerce Integrator.</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>sysgrade_eci/system_config_version_renderer</frontend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </current_version>
+                    </fields>
+                </version>
+            </groups>
+        </eci>
+    </sections>
+</config>
